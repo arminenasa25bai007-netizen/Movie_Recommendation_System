@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommendation Predictor</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 450px; margin: 50px auto; background: #f4f4f9; }
+        .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        input, button { width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; }
+        button { background: #0078d4; color: white; border: none; cursor: pointer; font-size: 16px; }
+        button:hover { background: #005a9e; }
+        .result { margin-top: 15px; padding: 12px; background: #e6f4ea; font-weight: bold; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Movie Recommendation Predictor</h2>
+        <form action="/predict_web" method="POST">
+            <label>IMDb Rating (1.0 - 10.0):</label>
+            <input type="number" step="0.1" name="imdb_rating" required placeholder="e.g. 8.4">
+
+            <label>Watch Time (Minutes):</label>
+            <input type="number" name="watch_time_mins" required placeholder="e.g. 115">
+
+            <label>Genre Match Score (0 - 100):</label>
+            <input type="number" name="genre_match_score" required placeholder="e.g. 85">
+
+            <button type="submit">Predict Recommendation</button>
+        </form>
+        {% if prediction_text %}
+            <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
